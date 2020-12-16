@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Filament Demo</title>
+    <style>
+      body {
+        font-family: arial;
+        margin: 0;
+        padding: none;
+      }
+
+      .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+      div.emscripten { text-align: center; }
+      div.emscripten_border { border: none; }
+      canvas.emscripten { border: 0px none; background-color: black; }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="emscripten_border">
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    </div>
+
+    <script type='text/javascript'>
+    
+      // The GL context will be saved in a variable to initialise Filament
+      var myengine = {};
+
+      var Module = {
+        preRun: function() { 
+          const defaults = {
+              majorVersion: 2,
+              minorVersion: 0,
+              antialias: false,
+              depth: true,
+              alpha: false
+          };
+          // Create the WebGL 2.0 context.
+          const ctx = canvas.getContext("webgl2", defaults);
+          ctx.getExtension('WEBGL_compressed_texture_s3tc');
+          ctx.getExtension('WEBGL_compressed_texture_astc');
+          ctx.getExtension('WEBGL_compressed_texture_etc');
+          myengine.glContext = ctx;
+          myengine.glOptions = defaults;
+          //const handle = GL.registerContext(myengine.glContext, myengine.glOptions);
+          //GL.makeContextCurrent(handle);
+        },
+        postRun: [],
+        print: function(text){},
+        printErr: function(text){},
+        canvas: (function() {
+          return document.getElementById('canvas');
+        })(),
+        setStatus: function(text) {},
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+        }
+      };
+    </script>
+    <script async type="text/javascript" src="myengine.js"></script>
+  </body>
+</html>
