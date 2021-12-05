@@ -8,10 +8,7 @@ Here is the web example: https://jnmaloney.github.io/YourWebFilament/out/index.h
 ## Building Filament
 You will need to build Filament to be able to link to it.
 
-Use the following commands
-
-    export EMSDK=emsdk    
-    CC=/usr/bin/clang CXX=/usr/bin/clang++ CXXFLAGS="-fno-builtin" CPLUS_INCLUDE_PATH=/usr/lib/llvm-7/include/c++/v1:/usr/include/x86_64-linux-gnu/c++/9 LIBRARY_PATH=/usr/lib/llvm-7/lib ./build.sh -j -p webgl release 
+Follow the Filament build instructions, you should not need to make a special build.
     
 ## Building this project
 
