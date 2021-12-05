@@ -9,9 +9,9 @@ OUTPUT=out/myengine.js
 
 SOURCES = main.cpp $(wildcard src/*.cpp) $(wildcard extern/glad/src/*.cpp)
 
-FLAGS = -std=c++20 -fno-builtin
+FLAGS = -std=c++20
 CC = emcc
-CFLAGS = $(FLAGS) $(INCLUDE) 
+CFLAGS = $(FLAGS) $(INCLUDE) -g
 
 LIB_DIRS = -L/lib/x86_64-linux-gnu/ -L/lib/ -L/usr/lib/x86_64-linux-gnu/ -L/usr/local/lib/ -L$(FILAMENT_LIB_DIR)/filament -L$(FILAMENT_LIB_DIR)/filament/backend -L$(FILAMENT_LIB_DIR)/libs/filabridge -L$(FILAMENT_LIB_DIR)/libs/filaflat -L$(FILAMENT_LIB_DIR)/libs/utils -L$(FILAMENT_LIB_DIR)/libs/geometry -L$(FILAMENT_LIB_DIR)/libs/ibl -L$(FILAMENT_LIB_DIR)/libs/filameshio -L$(FILAMENT_LIB_DIR)/libs/image -L$(FILAMENT_LIB_DIR)/third_party/smol-v/tnt -L$(FILAMENT_LIB_DIR)/third_party/meshoptimizer
 
