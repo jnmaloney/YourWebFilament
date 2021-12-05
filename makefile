@@ -1,18 +1,19 @@
-DEV_DIR=/home/josh/Documents/dev
-FILAMENT_DIR=$(DEV_DIR)/filament-1.9.9_wasm/filament
+DEV_DIR=..
+FILAMENT_DIR=$(DEV_DIR)/filament-src/filament/
+FILAMENT_LIB_DIR=$(DEV_DIR)/filament-src/filament/out/cmake-webgl-release/
 
-FILAMENT_INCLUDE = -I$(FILAMENT_DIR)/include -I$(FILAMENT_DIR)/backend/include -I$(FILAMENT_DIR)/../libs/utils/include -I$(FILAMENT_DIR)/../libs/math/include -I$(FILAMENT_DIR)/../libs/filameshio/include -I$(FILAMENT_DIR)/../libs/filabridge/include -I$(FILAMENT_DIR)/../libs/image/include 
+FILAMENT_INCLUDE = -I$(FILAMENT_DIR)filament/include -I$(FILAMENT_DIR)filament/backend/include -I$(FILAMENT_DIR)libs/utils/include -I$(FILAMENT_DIR)libs/math/include -I$(FILAMENT_DIR)libs/filameshio/include -I$(FILAMENT_DIR)libs/filabridge/include -I$(FILAMENT_DIR)libs/image/include 
 INCLUDE = -Isrc -I/usr/local/include/ $(FILAMENT_INCLUDE) -Iextern/glad/include/ 
 
 OUTPUT=out/myengine.js
 
 SOURCES = main.cpp $(wildcard src/*.cpp) $(wildcard extern/glad/src/*.cpp)
 
-FLAGS = -std=c++1z -fno-builtin
+FLAGS = -std=c++20 -fno-builtin
 CC = emcc
 CFLAGS = $(FLAGS) $(INCLUDE) 
 
-LIB_DIRS = -L/lib/x86_64-linux-gnu/ -L/lib/ -L/usr/lib/x86_64-linux-gnu/ -L/usr/local/lib/ -L$(FILAMENT_DIR)/../linktome
+LIB_DIRS = -L/lib/x86_64-linux-gnu/ -L/lib/ -L/usr/lib/x86_64-linux-gnu/ -L/usr/local/lib/ -L$(FILAMENT_LIB_DIR)/filament -L$(FILAMENT_LIB_DIR)/filament/backend -L$(FILAMENT_LIB_DIR)/libs/filabridge -L$(FILAMENT_LIB_DIR)/libs/filaflat -L$(FILAMENT_LIB_DIR)/libs/utils -L$(FILAMENT_LIB_DIR)/libs/geometry -L$(FILAMENT_LIB_DIR)/libs/ibl -L$(FILAMENT_LIB_DIR)/libs/filameshio -L$(FILAMENT_LIB_DIR)/libs/image -L$(FILAMENT_LIB_DIR)/third_party/smol-v/tnt -L$(FILAMENT_LIB_DIR)/third_party/meshoptimizer
 
 FILAMENT_LIBS=-lfilament -lbackend -lfilabridge -lfilaflat -lutils -lgeometry -lsmol-v -libl -lfilameshio -lmeshoptimizer -limage
 LIBS = $(FILAMENT_LIBS) 

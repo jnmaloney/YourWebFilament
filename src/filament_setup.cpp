@@ -33,6 +33,7 @@ filament::Engine* fila_engine;
 filament::SwapChain* fila_swap_chain;
 filament::View* fila_view;
 filament::Renderer* fila_renderer;
+utils::Entity fila_cam_entity;
 filament::Camera* fila_cam;
 filament::Scene* fila_scene;
 
@@ -71,7 +72,8 @@ void init_filament()
   fila_renderer = fila_engine->createRenderer();
   fila_scene = fila_engine->createScene();
   fila_view = fila_engine->createView();
-  fila_cam = fila_engine->createCamera();
+  fila_cam_entity = utils::EntityManager::get().create();
+  fila_cam = fila_engine->createCamera(fila_cam_entity);
 
   fila_cam->setExposure(16.0f, 1 / 125.0f, 100.0f);
   fila_cam->setExposure(100.0f);
